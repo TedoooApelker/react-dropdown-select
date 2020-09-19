@@ -67,11 +67,7 @@ const ItemComponent = styled.span`
     ${({ disabled, color }) => !disabled && color && `background: ${hexToRGBA(color, 0.1)};`}
   }
 
-  :hover,
-  :focus {
-    background: ${({ color }) => color && hexToRGBA(color, 0.1)};
-    outline: none;
-  }
+
 
   &.${LIB_NAME}-item-selected {
     ${({ disabled, color }) =>

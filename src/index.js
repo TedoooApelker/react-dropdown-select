@@ -24,6 +24,7 @@ import { LIB_NAME } from './constants';
 
 export class Select extends Component {
   static propTypes = {
+    maxItems: PropTypes.number,
     onChange: PropTypes.func.isRequired,
     onDropdownClose: PropTypes.func,
     onDropdownCloseRequest: PropTypes.func,
@@ -252,6 +253,9 @@ export class Select extends Component {
       ) {
         return this.removeItem(null, item, false);
       }
+
+      if (this.props.maxItems && this.state.values.length >= this.props.maxItems)
+        return;
 
       this.setState({
         values: [...this.state.values, item]
@@ -604,7 +608,7 @@ const ReactDropdownSelect = styled.div`
   cursor: pointer;
   min-height: 36px;
   ${({ disabled }) =>
-    disabled ? 'cursor: not-allowed;pointer-events: none;opacity: 0.3;' : 'pointer-events: all;'}
+  disabled ? 'cursor: not-allowed;pointer-events: none;opacity: 0.3;' : 'pointer-events: all;'}
 
   :hover,
   :focus-within {
